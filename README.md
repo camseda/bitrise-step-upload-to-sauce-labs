@@ -6,7 +6,7 @@ Can be run directly with the bitrise CLI, just git clone this repository, cd int
 
 Check the bitrise.yml file for required inputs which have to be added to your .bitrise.secrets.yml file!
 
-Step by step:
+# Step by step:
 
 Open up your Terminal / Command Line
 git clone the repository
@@ -44,7 +44,7 @@ reference it in your bitrise.yml with the git::PUBLIC-GIT-CLONE-URL@BRANCH step 
    - my_input_2: "my value 2"
 You can find more examples of step reference styles in the bitrise CLI repository.
 
-How to contribute to this Step
+# How to contribute to this Step
 Fork this repository
 git clone it
 Create a branch you'll work on
@@ -57,7 +57,7 @@ You just have to replace the step ID in your project's bitrise.yml with either a
 direct git URL format: instead of - original-step-id: use - git::https://github.com/user/step.git@branch:
 You can find more example of alternative step referencing at: https://github.com/bitrise-io/bitrise/blob/master/_examples/tutorials/steps-and-workflows/bitrise.yml
 Once you're done just commit your changes & create a Pull Request
-Share your own Step
+# Share your own Step
 You can share your Step or step version with the bitrise CLI. If you use the bitrise.yml included in this repository, all you have to do is:
 
 In your Terminal / Command Line cd into this directory (where the bitrise.yml of the step is located)
@@ -67,4 +67,3 @@ Check the share-this-step workflow in the bitrise.yml, and fill out the envs if 
 Then run: bitrise run share-this-step to share the step (version) you specified in the envs
 Send the Pull Request, as described in the logs of bitrise run share-this-step
 That's all ;)
-
