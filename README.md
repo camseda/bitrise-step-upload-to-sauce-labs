@@ -1,5 +1,5 @@
 # sauce-upload
-For remote device testing on Browserstack. This step allows you to upload an APK file to BrowserStack and use the returned app_url for testing on real devices
+For remote device testing on Sauce Labs. This step allows you to upload an APK, AAB, or IPA file to Sauce Labs and use the returned app_url for testing on real devices
 
 # How to use this Step
 Can be run directly with the bitrise CLI, just git clone this repository, cd into it's folder in your Terminal/Command Line and call bitrise run test.
