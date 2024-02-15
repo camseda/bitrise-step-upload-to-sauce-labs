@@ -60,11 +60,3 @@ inputs:
   - sauce_labs_app_name: $SAUCE_LABS_APP_NAME
     opts:
       description: The name the app will have in Sauce Labs
-outputs:
-  - SAUCE_LABS_APP_URL: null
-    opts:
-      description: |
-        The app url returned by Sauce Labs App Automate with the following format "https://..."". 
-        Use this in your remote device tests, usually through your capabilities configuration
-      summary: The app URL used in your App Automate's remote device tests
-      title: Sauce Labs App Automate App URL
