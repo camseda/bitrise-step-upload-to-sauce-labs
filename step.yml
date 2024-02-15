@@ -1,23 +1,33 @@
-title: Upload to Sauce Labs
+#
+# A couple of useful guides & docs:
+#
+# - Main Bitrise CLI docs: https://github.com/bitrise-io/bitrise/tree/master/_docs
+# - Step Development Guideline: https://github.com/bitrise-io/bitrise/blob/master/_docs/step-development-guideline.md
+# - Bitrise.yml format spec: https://github.com/bitrise-io/bitrise/blob/master/_docs/bitrise-yml-format-spec.md
+# - Bitrise docs: http://devcenter.bitrise.io/
+# - Bitrise CLI guides: http://devcenter.bitrise.io/bitrise-cli/
+
+title: |-
+  Upload to Sauce Labs
 summary: |
-  Upload APK/AAB/IPA files to Sauce Lab's App Automate
+  Upload APK/AAB/IPA artifacts to Sauce Labs.
 description: |
-  Upload your build files to Sauce Labs for remote device testing.
-website: https://github.com/camseda/bitrise-step-sauce-upload
-source_code_url: https://github.com/camseda/bitrise-step-sauce-upload
-support_url: https://github.com/camseda/bitrise-step-sauce-upload/issues
-source:
-  git: https://github.com/camseda/bitrise-step-sauce-upload.git
-host_os_tags:
-  - osx-10.10
+  Upload your build files to Sauce Labs for remote device testing. Needs an APK, AAB, or IPA file, along with Sauce Labs username and access key.
+website: https://github.com/camseda/bitrise-step-upload-to-sauce-labs
+source_code_url: https://github.com/camseda/bitrise-step-upload-to-sauce-labs
+support_url: https://github.com/camseda/bitrise-step-upload-to-sauce-labs/issues
+
 project_type_tags:
-  - ios
-  - android
+   - ios
+   - android
+
 type_tags:
   - test
-toolkit:
-  bash:
-    entry_file: step.sh
+
+is_always_run: false
+is_skippable: false
+run_if: ""
+
 deps:
   brew:
     - name: git
@@ -27,10 +37,11 @@ deps:
     - name: git
     - name: wget
     - name: jq
-is_requires_admin_user: true
-is_always_run: false
-is_skippable: false
-run_if: ""
+
+toolkit:
+  bash:
+    entry_file: step.sh
+
 inputs:
   - opts:
       description: |
@@ -40,7 +51,7 @@ inputs:
         The app file you want to upload to Sauce Labs, usually $BITRISE\_APK\_PATH, $BITRISE\_AAB\_PATH,
         or $BITRISE\_IPA\_PATH
       title: A Bitrise generated APK/AAB or IPA path
-    upload_path:
+    upload_path: $BITRISE\_IPA\_PATH
   - sauce_labs_username: $SAUCE_LABS_USERNAME
     opts:
       description: |

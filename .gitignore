@@ -1,1 +1,4 @@
 .bitrise*
+.idea
+.vscode
+_tmp/
