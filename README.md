@@ -1,7 +1,6 @@
-# Upload to SauceLabs
+# Upload to Sauce Labs
 
-Needs artifact path and SauceLabs username and access keys to work
-
+Needs artifact path and Sauce Labs username and access keys to work
 
 ## How to use this Step
 
