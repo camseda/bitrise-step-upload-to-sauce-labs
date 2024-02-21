@@ -13,14 +13,20 @@ summary: |
   Upload APK/AAB/IPA artifacts to Sauce Labs.
 description: |
   Upload your build files to Sauce Labs for remote device testing.
-  Needs an APK, AAB, or IPA file, along with Sauce Labs username and access key.
+  Needs an APK, AAB, or IPA file along with Sauce Labs username and access key.
+
+  Required fields are:
+  - upload_path
+  - sauce_username
+  - sauce_access_key
+  - sauce_app_name
 website: https://github.com/camseda/bitrise-step-upload-to-sauce-labs
 source_code_url: https://github.com/camseda/bitrise-step-upload-to-sauce-labs
 support_url: https://github.com/camseda/bitrise-step-upload-to-sauce-labs/issues
 
 project_type_tags:
-   - ios
-   - android
+  - ios
+  - android
 
 type_tags:
   - deploy
@@ -46,7 +52,7 @@ toolkit:
 inputs:
   - upload_path: $UPLOAD_PATH
     opts:
-      title: A Bitrise generated APK, AAB, or IPA path
+      title: The absolute APK, AAB, or IPA path
       summary: |
         The app file you want to upload to Sauce Labs, usually `$BITRISE_APK_PATH`, `$BITRISE_AAB_PATH`,
         or `$BITRISE_IPA_PATH`
@@ -69,9 +75,10 @@ inputs:
   - sauce_app_name: $SAUCE_APP_NAME
     opts:
       title: Sauce Labs App Name
-      summary: Your Sauce Labs App Name
+      summary: Your Sauce Labs application name and extension.
       description: |
         This is translated to the File Name in Sauce Labs.
         Can be used to activate a specific app with: `storage:filename=<fileName>.<ext>`
-        rather than using the File ID automatically generated for an app.
+        rather than using the File ID automatically generated on upload.
         If this is not present, File Name will be defaulted by the app's name in `$UPLOAD_PATH`
+      is_required: true
