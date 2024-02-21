@@ -1,6 +1,12 @@
 # Upload to Sauce Labs
 
-Needs artifact path and Sauce Labs username and access keys to work
+Uploads a Bitrise produced iOS or Android build to the US West 1 Sauce Labs remote storage.
+
+Required fields for upload are:
+* upload_path
+* sauce_username
+* sauce_access_key
+* sauce_app_name
 
 ## How to use this Step
 
