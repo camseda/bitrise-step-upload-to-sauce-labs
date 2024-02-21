@@ -13,7 +13,7 @@ summary: |
   Upload APK/AAB/IPA artifacts to Sauce Labs.
 description: |
   Upload your build files to Sauce Labs for remote device testing.
-  Needs an APK, AAB, or IPA file along with Sauce Labs username and access key.
+  Needs an APK, AAB, or IPA file, Sauce Labs username, access key, and custom file name.
 
   Required fields are:
   - upload_path
@@ -78,7 +78,7 @@ inputs:
       summary: Your Sauce Labs application name and extension.
       description: |
         This is translated to the File Name in Sauce Labs.
-        Can be used to activate a specific app with: `storage:filename=<fileName>.<ext>`
-        rather than using the File ID automatically generated on upload.
-        If this is not present, File Name will be defaulted by the app's name in `$UPLOAD_PATH`
+        Can be used to activate a specific app with the `filename` flag in your Capabilties
+        rather than using the File ID automatically generated on upload - `storage:filename=<fileName>.<ext>`.
+        A JavaScript example would be: `caps['app'] = 'storage:filename=<file-name>.apk';`
       is_required: true
