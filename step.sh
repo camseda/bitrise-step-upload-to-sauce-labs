@@ -7,7 +7,7 @@ if [[ -z $sauce_app_name ]]; then
 fi
 
 if [[ -z $upload_path ]]; then
-  upload_path=$(if [[ $BUILD_TYPE == "apk" ]]; then echo $BITRISE_APK_PATH; elif [[ $BUILD_TYPE == "aab" ]]; then echo $BITRISE_AAB_PATH; else echo "$BITRISE_IPA_PATH"; fi)
+  upload_path=$(if [[ $artifact_type == "apk" ]]; then echo $BITRISE_APK_PATH; elif [[ $artifact_type == "aab" ]]; then echo $BITRISE_AAB_PATH; else echo "$BITRISE_IPA_PATH"; fi)
 fi
 
 curl --location --request POST \
