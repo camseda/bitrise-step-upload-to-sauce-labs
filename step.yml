@@ -54,9 +54,9 @@ inputs:
     opts:
       title: The absolute APK, AAB, or IPA path
       summary: |
-        Generated automatically based on the Sauce Lab application's name extension set below. If you'd like to overwrite the generated file path (usually `$BITRISE_APK_PATH`, `$BITRISE_AAB_PATH`,
+        Can be used to overwrite the automatically generated filepath.
+      description: Generated automatically based on the Sauce Lab application's name extension set below. If you'd like to overwrite the generated file path (usually `$BITRISE_APK_PATH`, `$BITRISE_AAB_PATH`,
         or `$BITRISE_IPA_PATH`), you can set a path here.
-      description: Can be used to overwrite the automatically generated filepath.
       is_required: false
   - sauce_username: $SAUCE_USERNAME
     opts:
