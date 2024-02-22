@@ -16,6 +16,7 @@ if [[ -z $artifact_path ]]; then
   else
     echo "Your application name does not contain a valid extension (.apk, .aab, or .ipa).";
     echo "Please update your sauce_app_name input value, or set your own artifact_path.";
+    exit 1
   fi)
 fi
 
