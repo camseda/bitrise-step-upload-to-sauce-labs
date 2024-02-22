@@ -13,7 +13,9 @@ if [[ -z $upload_path ]]; then
     echo $BITRISE_AAB_PATH; 
   elif [[ $sauce_app_name =~ ".ipa" ]]; then
     echo $BITRISE_IPA_PATH;
-  else echo "Your application name does not contain a valid extension (.apk, .aab, or .ipa). Please update your sauce_app_name input value, or set your own upload_path.";
+  else
+    echo "Your application name does not contain a valid extension (.apk, .aab, or .ipa).";
+    echo "Please update your sauce_app_name input value, or set your own upload_path.";
   fi)
 fi
 
