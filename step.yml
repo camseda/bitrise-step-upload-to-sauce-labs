@@ -50,7 +50,7 @@ toolkit:
     entry_file: step.sh
 
 inputs:
-  - upload_path: $UPLOAD_PATH
+  - upload_path:
     opts:
       title: The absolute APK, AAB, or IPA path
       summary: |
