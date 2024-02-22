@@ -30,10 +30,10 @@ workflows:
             To test this, you need a Sauce Labs account with a valid username/access key and an IPA/APK/AAB path from which to upload.
           run_if: true
           inputs:
-            - upload_path: $UPLOAD_PATH
             - sauce_username: $SAUCE_USERNAME
             - sauce_access_key: $SAUCE_ACCESS_KEY
             - sauce_app_name: $SAUCE_APP_NAME
+            - artifact_path: $ARTIFACT_PATH
       - script:
           inputs:
             - content: |

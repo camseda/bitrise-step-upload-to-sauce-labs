@@ -16,7 +16,6 @@ description: |
   Needs an APK, AAB, or IPA file, Sauce Labs username, access key, and custom file name.
 
   Required fields are:
-  - upload_path
   - sauce_username
   - sauce_access_key
   - sauce_app_name
@@ -50,14 +49,6 @@ toolkit:
     entry_file: step.sh
 
 inputs:
-  - upload_path:
-    opts:
-      title: The absolute APK, AAB, or IPA path
-      summary: Can be used to overwrite the automatically generated filepath.
-      description: |
-        Generated automatically based on the Sauce Lab application's name extension set below. If you'd like to overwrite the generated file path (usually `$BITRISE_APK_PATH`, `$BITRISE_AAB_PATH`,
-        or `$BITRISE_IPA_PATH`), you can set a path here.
-      is_required: false
   - sauce_username: $SAUCE_USERNAME
     opts:
       title: Sauce Labs username
@@ -82,3 +73,12 @@ inputs:
         rather than using the File ID automatically generated on upload - `storage:filename=<fileName>.<ext>`.
         A JavaScript example would be: `caps['app'] = 'storage:filename=<file-name>.apk';`
       is_required: true
+  - artifact_path:
+      opts:
+        title: The absolute APK, AAB, or IPA path
+        summary: Leave empty to use an automatically generated artifact_path.
+        description: |
+          Generated automatically based on the Sauce Lab application's name extension set above.
+          If you'd like to overwrite the 'artifact_path' for the cURL request, you can set the file path here (usually `$BITRISE_APK_PATH`, `$BITRISE_AAB_PATH`,
+          or `$BITRISE_IPA_PATH`).
+        is_required: false
