@@ -6,12 +6,23 @@ if [[ -z $sauce_app_name ]]; then
   exit 1
 fi
 
-upload_path=$(if [[ $BUILD_TYPE == "apk" ]]; then echo $BITRISE_APK_PATH; elif [[ $BUILD_TYPE == "aab" ]]; then echo $BITRISE_AAB_PATH; else echo "$BITRISE_IPA_PATH"; fi)
-
+if [[ -z $artifact_path ]]; then
+  artifact_path=$(if [[ $sauce_app_name =~ ".apk" ]]; then
+    echo $BITRISE_APK_PATH;
+  elif [[ $sauce_app_name =~ ".aab" ]]; then
+    echo $BITRISE_AAB_PATH; 
+  elif [[ $sauce_app_name =~ ".ipa" ]]; then
+    echo $BITRISE_IPA_PATH;
+  else
+    echo "Your application name does not contain a valid extension (.apk, .aab, or .ipa).";
+    echo "Please update your sauce_app_name input value, or set your own artifact_path.";
+    exit 1;
+  fi)
+fi
 
 curl --location --request POST \
   --url "https://api.us-west-1.saucelabs.com/v1/storage/upload" \
   --user "$sauce_username:$sauce_access_key" \
-  --form "payload=@$upload_path"\
+  --form "payload=@$artifact_path"\
   --form "name=$sauce_app_name" \
   --fail
