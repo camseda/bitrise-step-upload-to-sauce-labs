@@ -7,7 +7,14 @@ if [[ -z $sauce_app_name ]]; then
 fi
 
 if [[ -z $upload_path ]]; then
-  upload_path=$(if [[ $artifact_type == "apk" ]]; then echo $BITRISE_APK_PATH; elif [[ $artifact_type == "aab" ]]; then echo $BITRISE_AAB_PATH; else echo "$BITRISE_IPA_PATH"; fi)
+  upload_path=$(if [[ $sauce_app_name =~ ".apk" ]]; then
+    echo $BITRISE_APK_PATH;
+  elif [[ $sauce_app_name =~ ".aab" ]]; then
+    echo $BITRISE_AAB_PATH; 
+  elif [[ $sauce_app_name =~ ".ipa" ]]; then
+    echo $BITRISE_IPA_PATH;
+  else echo "Your application name does not contain a valid extension (.apk, .aab, or .ipa). Please update your sauce_app_name input value, or set your own upload_path.";
+  fi)
 fi
 
 curl --location --request POST \
