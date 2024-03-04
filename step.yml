@@ -88,8 +88,8 @@ inputs:
       is_required: false
   - data_center_url:
     opts:
-      title: App storage URL containing the location of your data center
-      summary: Leave empty to use the US West data center.
+      title: Request / data center URL
+      summary: App storage URL containing the location of your data center
       description: |
         If using the ES East or Europe data center, provide the desired URL for the POST request.
         This step will default to US West (https://api.us-west-1.saucelabs.com/v1/storage/upload) otherwise.
