@@ -1,11 +1,10 @@
 # Upload to Sauce Labs
 
-Uploads a Bitrise produced iOS or Android build to the US West 1 Sauce Labs remote storage.
+Upload a Bitrise produced iOS or Android build to Sauce Labs [mobile app storage](https://docs.saucelabs.com/mobile-apps/app-storage/).
 
 Required fields for upload are:
 * sauce_username
 * sauce_access_key
-* sauce_app_name
 
 ## How to use this Step
 

@@ -10,15 +10,20 @@
 title: |-
   Upload to Sauce Labs
 summary: |
-  Upload APK/AAB/IPA artifacts to Sauce Labs.
+  Upload an APK/AAB/IPA/ZIP artifact to Sauce Labs.
 description: |
-  Upload your build files to Sauce Labs for remote device testing.
-  Needs an APK, AAB, or IPA file, Sauce Labs username, access key, and custom file name.
+  Upload your build file to Sauce Labs for remote device testing.
+  Requires an APK, AAB, IPA, or ZIP file, Sauce Labs username, and access key.
+  You can optionally provide a custom file name, build path, or request url.
 
   Required fields are:
   - sauce_username
   - sauce_access_key
+
+  Optional fields are:
   - sauce_app_name
+  - artifact_path
+  - data_center_url
 website: https://github.com/camseda/bitrise-step-upload-to-sauce-labs
 source_code_url: https://github.com/camseda/bitrise-step-upload-to-sauce-labs
 support_url: https://github.com/camseda/bitrise-step-upload-to-sauce-labs/issues
@@ -37,12 +42,8 @@ run_if: ""
 deps:
   brew:
     - name: git
-    - name: wget
-    - name: jq
   apt_get:
     - name: git
-    - name: wget
-    - name: jq
 
 toolkit:
   bash:
@@ -71,14 +72,25 @@ inputs:
         This is translated to the File Name in Sauce Labs.
         Can be used to activate a specific app with the `filename` flag in your Capabilities
         rather than using the File ID automatically generated on upload - `storage:filename=<fileName>.<ext>`.
-        A JavaScript example would be: `caps['app'] = 'storage:filename=<file-name>.apk';`
-      is_required: true
+        A JavaScript example would be: `caps['app'] = 'storage:filename=TestApplication.apk';`
+
+        If `sauce_app_name` is not provided, Sauce Labs adds a filename based on the `artifact_path`.
+      is_required: false
   - artifact_path:
     opts:
-      title: The absolute APK, AAB, or IPA path
+      title: The absolute APK, AAB, IPA, or ZIP path
       summary: Leave empty to use an automatically generated artifact_path.
       description: |
-        Generated automatically based on the Sauce Lab application's name extension set above.
-        If you'd like to overwrite the 'artifact_path' for the cURL request, you can set the file path here (usually `$BITRISE_APK_PATH`, `$BITRISE_AAB_PATH`,
-        or `$BITRISE_IPA_PATH`).
+        Generated automatically based on the Sauce Lab application's name extension set in `sauce_app_name`.
+        If you'd like to set a custom 'artifact_path' for the cURL, you can set the file path here (usually `$BITRISE_APK_PATH`, `$BITRISE_AAB_PATH`, or `$BITRISE_IPA_PATH`).
+
+        If `sauce_app_name` is not supplied or if you're uploading a file in a format other than .apk, .aab, .ipa, or .zip, you will need to provide a value for `artifact_path`.
+      is_required: false
+  - data_center_url:
+    opts:
+      title: App storage URL containing the location of your data center
+      summary: Leave empty to use the US West data center.
+      description: |
+        If using the ES East or Europe data center, provide the desired URL for the POST request.
+        This step will default to US West (https://api.us-west-1.saucelabs.com/v1/storage/upload) otherwise.
       is_required: false
