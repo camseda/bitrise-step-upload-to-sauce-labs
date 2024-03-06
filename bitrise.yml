@@ -5,7 +5,7 @@ app:
   envs:
     # If you want to share this step into a StepLib
     - BITRISE_STEP_ID: upload-to-sauce-labs
-    - BITRISE_STEP_VERSION: "0.0.2"
+    - BITRISE_STEP_VERSION: "0.1.0"
     - BITRISE_STEP_GIT_CLONE_URL: https://github.com/camseda/bitrise-step-upload-to-sauce-labs.git
     - MY_STEPLIB_REPO_FORK_GIT_URL: git@github.com:camseda/bitrise-step-upload-to-sauce-labs.git
 
@@ -26,14 +26,15 @@ workflows:
       - path::./:
           title: Sauce Labs Upload Step Test
           description: |
-            Uploads an IPA/APK/AAB file to Sauce Labs.
-            To test this, you need a Sauce Labs account with a valid username/access key and an IPA/APK/AAB path from which to upload.
+            Uploads an IPA/APK/AAB/ZIP file to Sauce Labs.
+            To test this, you need a Sauce Labs account with a valid username/access key and an IPA/APK/AAB/ZIP path from which to upload.
           run_if: true
           inputs:
             - sauce_username: $SAUCE_USERNAME
             - sauce_access_key: $SAUCE_ACCESS_KEY
             - sauce_app_name: $SAUCE_APP_NAME
             - artifact_path: $ARTIFACT_PATH
+            - data_center_url: $DATA_CENTER_URL
       - script:
           inputs:
             - content: |
