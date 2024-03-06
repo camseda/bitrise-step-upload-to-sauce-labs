@@ -6,6 +6,11 @@ Required fields for upload are:
 * sauce_username
 * sauce_access_key
 
+Optional fields include:
+* sauce_app_name
+* artifact_path
+* data_center_url
+
 ## How to use this Step
 
 Can be run directly with the [bitrise CLI](https://github.com/bitrise-io/bitrise),

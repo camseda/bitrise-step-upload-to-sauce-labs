@@ -14,16 +14,24 @@ summary: |
 description: |
   Upload your build file to Sauce Labs for remote device testing.
   Requires an APK, AAB, IPA, or ZIP file within the workflow, Sauce Labs username, access key, and file name.
-  You can optionally provide a build path and request url.
+  You can optionally provide a file name, build path, or request url.
 
   Required fields are:
   - sauce_username
   - sauce_access_key
-  - sauce_app_name
 
   Optional fields are:
+  - sauce_app_name
   - artifact_path
   - data_center_url
+
+  Note: If both `sauce_app_name` and `artifact_path` are missing, a valid .apk, .aab, .ipa, or .zip will attempt to be found.
+  The script will automatically search using the default Env Vars (in descending order):
+  - BITRISE_APK_PATH
+  - BITRISE_AAB_PATH
+  - BITRISE_IPA_PATH
+  - BITRISE_XCARCHIVE_ZIP_PATH
+  If both optional fields are null and no builds are found using the above, the workflow will fail.
 website: https://github.com/camseda/bitrise-step-upload-to-sauce-labs
 source_code_url: https://github.com/camseda/bitrise-step-upload-to-sauce-labs
 support_url: https://github.com/camseda/bitrise-step-upload-to-sauce-labs/issues
@@ -38,12 +46,6 @@ type_tags:
 is_always_run: false
 is_skippable: false
 run_if: ""
-
-deps:
-  brew:
-    - name: git
-  apt_get:
-    - name: git
 
 toolkit:
   bash:
@@ -69,21 +71,20 @@ inputs:
       title: Sauce Labs App Name
       summary: Your Sauce Labs application name and extension.
       description: |
-        This is translated to the File Name in Sauce Labs (and must include the file extension). The extension is used to automatically set the `artifact_path`.
+        This is translated to the File Name in Sauce Labs (and must include the file extension).
+        If `sauce_app_name` is included and `artifact_path` is null, the extension is used to search the workflow set it automatically.
 
         Sauce Lab's File Name can be used to activate a specific app with the `filename` flag in your Capabilities
         rather than using the File ID automatically generated on upload - `storage:filename=<fileName>.<ext>`.
         A JavaScript example would be: `caps['app'] = 'storage:filename=TestApplication.apk';`
-      is_required: true
+      is_required: false
   - artifact_path:
     opts:
-      title: The absolute APK, AAB, IPA, or ZIP path
-      summary: Leave empty to use an automatically generated artifact_path.
+      title: The absolute path to your file
+      summary: Leave empty to use an automatically generated artifact_path for an APK, AAB, IPA, or ZIP file
       description: |
-        Generated automatically based on the Sauce Lab application's name set in `sauce_app_name`.
-        The extension will be used to gather the `BITRISE_APK_PATH`, `BITRISE_AAB_PATH`, `BITRISE_IPA_PATH`, or `BITRISE_XCARCHIVE_ZIP_PATH`.
-
-        If you're uploading a file in a format other than .apk, .aab, .ipa, or .zip, you will need to provide a value for `artifact_path`.
+        Generated automatically if `sauce_app_name` is set and contains a valid extension.
+        If you don't supply `sauce_app_name`, provide an `artifact_path`, or upload a file format other than .apk, .aab, .ipa, or .zip, you will need to provide a value here.
       is_required: false
   - data_center_url:
     opts:
