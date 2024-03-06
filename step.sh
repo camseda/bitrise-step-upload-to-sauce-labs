@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
+if [[ -z $sauce_app_name ]]; then
+  echo "SAUCE_APP_NAME environment variable must be set for this workflow!"
+  exit 1
+fi
+
 if [[ -z $artifact_path ]]; then
   artifact_path=$(if [[ $sauce_app_name =~ ".apk" ]]; then
     echo $BITRISE_APK_PATH;
