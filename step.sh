@@ -26,17 +26,9 @@ if [[ -z $data_center_endpoint ]]; then
   data_center_endpoint="https://api.us-west-1.saucelabs.com/v1/storage/upload"
 fi
 
-if [[ -z $sauce_app_name ]]; then
-  curl --location --request POST \
+curl --location --request POST \
   --url "$data_center_endpoint" \
   --user "$sauce_username:$sauce_access_key" \
   --form "payload=@$artifact_path"\
+  --form "name=$sauce_app_name" \
   --fail
-else
-  curl --location --request POST \
-    --url "$data_center_endpoint" \
-    --user "$sauce_username:$sauce_access_key" \
-    --form "payload=@$artifact_path"\
-    --form "name=$sauce_app_name" \
-    --fail
-fi
