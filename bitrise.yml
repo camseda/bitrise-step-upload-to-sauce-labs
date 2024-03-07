@@ -7,7 +7,7 @@ app:
     - BITRISE_STEP_ID: "upload-to-sauce-labs"
     - BITRISE_STEP_VERSION: "0.1.0"
     - BITRISE_STEP_GIT_CLONE_URL: https://github.com/camseda/bitrise-step-upload-to-sauce-labs.git
-    - MY_STEPLIB_REPO_FORK_GIT_URL: https://github.com/camseda/bitrise-steplib.git
+    - MY_STEPLIB_REPO_FORK_GIT_URL: git@github.com:camseda/bitrise-step-upload-to-sauce-labs.git
 
 workflows:
   test:
